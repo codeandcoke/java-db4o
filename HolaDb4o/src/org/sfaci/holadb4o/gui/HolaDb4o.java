@@ -59,7 +59,7 @@ public class HolaDb4o {
 	
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
-	private JTable tablaTiendas;
+	private JTablaTiendas tablaTiendas;
 	private JTable tablaCentros;
 
 	/**
@@ -92,6 +92,7 @@ public class HolaDb4o {
 	private void inicializar() {
 		
 		conectar();
+		tablaTiendas.listar();
 	}
 	
 	/**
@@ -163,6 +164,7 @@ public class HolaDb4o {
 		frmHolaDbo.getContentPane().add(getToolBar(), BorderLayout.NORTH);
 		frmHolaDbo.getContentPane().add(getTab(), BorderLayout.CENTER);
 		frmHolaDbo.setJMenuBar(getMenuBar());
+		frmHolaDbo.setLocationRelativeTo(null);
 	}
 
 	public JLabel getTfEstado() {
@@ -281,7 +283,7 @@ public class HolaDb4o {
 	}
 	public JTable getTablaTiendas() {
 		if (tablaTiendas == null) {
-			tablaTiendas = new JTable();
+			tablaTiendas = new JTablaTiendas();
 		}
 		return tablaTiendas;
 	}

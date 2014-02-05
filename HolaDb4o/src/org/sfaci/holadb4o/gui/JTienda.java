@@ -14,6 +14,8 @@ import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Util.Accion;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * Ventana para recogida de datos de Tiendas
@@ -69,12 +71,17 @@ public class JTienda extends JDialog {
 			tfNumeroLocal.setText("0");
 		tienda.setNumeroLocal(Integer.parseInt(tfNumeroLocal.getText()));
 		tienda.setFechaApertura(dcFechaApertura.getDate());
+		
+		accion = Accion.ACEPTAR;
+		setVisible(false);
 	}
 	
 	private void cancelar() {
 		
 		tienda = null;
 		accion = Accion.CANCELAR;
+		
+		setVisible(false);
 	}
 
 	/**
@@ -102,16 +109,27 @@ public class JTienda extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						aceptar();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						cancelar();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		setLocationRelativeTo(null);
 	}
 	public JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {

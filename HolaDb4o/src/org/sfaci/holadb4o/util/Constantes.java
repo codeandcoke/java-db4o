@@ -12,4 +12,9 @@ public class Constantes {
 	
 	public static final int TIENDA = 0;
 	public static final int CENTRO_COMERCIAL = 1;
+	
+	public static final String NOMBRE = "Nombre";
+	public static final String DESCRIPCION = "Descripción";
+	public static final String NUMERO_LOCAL = "Núm. Local";
+	public static final String FECHA_APERTURA = "Fecha Apertura";
 }
