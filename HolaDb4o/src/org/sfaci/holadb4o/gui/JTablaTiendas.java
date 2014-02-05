@@ -1,6 +1,5 @@
 package org.sfaci.holadb4o.gui;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -12,8 +11,8 @@ import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Constantes;
 import org.sfaci.holadb4o.util.Util;
 
+import com.db4o.ObjectSet;
 import com.db4o.query.Predicate;
-import com.db4o.query.Query;
 
 /**
  * Tabla que lista datos de Tiendas
@@ -129,6 +128,25 @@ public class JTablaTiendas extends JTable {
 			
 			modeloDatos.addRow(fila);
 		}
+	}
+	
+	public Tienda getTiendaSeleccionada() {
+		
+		int filaSeleccionada = 0;
+		
+		filaSeleccionada = getSelectedRow();
+		if (filaSeleccionada == -1)
+			return null;
+		
+		String nombre = (String) getValueAt(filaSeleccionada, 0);
+		Tienda tienda = new Tienda();
+		tienda.setNombre(nombre);
+		// Se asume que no existen dos tiendas con el mismo nombre.
+		// Así se puede contar con que la consulta sólo devuelve un resultado
+		ObjectSet<Tienda> resultado = Util.db.queryByExample(tienda);
+		tienda = resultado.next();
+		
+		return tienda;
 	}
 
 	/**

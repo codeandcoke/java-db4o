@@ -1,49 +1,39 @@
 package org.sfaci.holadb4o.gui;
 
-import java.awt.EventQueue;
+import static org.sfaci.holadb4o.util.Constantes.CENTRO_COMERCIAL;
+import static org.sfaci.holadb4o.util.Constantes.TIENDA;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Constantes;
 import org.sfaci.holadb4o.util.Util;
 import org.sfaci.holadb4o.util.Util.Accion;
 
-import static org.sfaci.holadb4o.util.Constantes.TIENDA;
-import static org.sfaci.holadb4o.util.Constantes.CENTRO_COMERCIAL;
-
 import com.db4o.Db4oEmbedded;
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JTextField;
-
-import java.awt.BorderLayout;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JToolBar;
-import javax.swing.JTabbedPane;
-import javax.swing.JPanel;
-import javax.swing.JMenu;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JComboBox;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Ejemplo que pruebas las principales características de db4o
@@ -140,6 +130,8 @@ public class HolaDb4o {
 			
 			Tienda tienda = jTienda.getTienda();
 			Util.db.store(tienda);
+			
+			tablaTiendas.listar();
 		case CENTRO_COMERCIAL:
 			// TODO
 		default:
@@ -151,6 +143,21 @@ public class HolaDb4o {
 	 */
 	private void modificar() {
 		
+		switch (tab.getSelectedIndex()) {
+		case TIENDA:
+			JTienda jTienda = new JTienda();
+			jTienda.setTienda(tablaTiendas.getTiendaSeleccionada());
+			if (jTienda.mostrarDialogo() == Accion.CANCELAR)
+				return;
+			
+			Tienda tienda = jTienda.getTienda();
+			Util.db.store(tienda);
+			
+			tablaTiendas.listar();
+		case CENTRO_COMERCIAL:
+			// TODO
+		default:
+		}
 	}
 	
 	/**
@@ -160,19 +167,7 @@ public class HolaDb4o {
 	
 		switch (tab.getSelectedIndex()) {
 		case TIENDA:
-			int filaSeleccionada = 0;
-			
-			filaSeleccionada = tablaTiendas.getSelectedRow();
-			if (filaSeleccionada == -1)
-				return;
-			
-			String nombre = (String) tablaTiendas.getValueAt(filaSeleccionada, 0);
-			Tienda tienda = new Tienda();
-			tienda.setNombre(nombre);
-			// Se asume que no existen dos tiendas con el mismo nombre.
-			// Así se puede contar con que la consulta sólo devuelve un resultado
-			ObjectSet<Tienda> resultado = Util.db.queryByExample(tienda);
-			tienda = resultado.next();
+			Tienda tienda = tablaTiendas.getTiendaSeleccionada();
 			Util.db.delete(tienda);
 			
 			tablaTiendas.listar();

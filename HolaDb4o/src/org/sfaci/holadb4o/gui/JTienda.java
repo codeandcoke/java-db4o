@@ -2,20 +2,20 @@ package org.sfaci.holadb4o.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Util.Accion;
 
 import com.toedter.calendar.JDateChooser;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * Ventana para recogida de datos de Tiendas
@@ -37,6 +37,7 @@ public class JTienda extends JDialog {
 	
 	private Tienda tienda;
 	private Accion accion;
+	private boolean esNueva = true;
 
 	/**
 	 * Launch the application.
@@ -62,9 +63,22 @@ public class JTienda extends JDialog {
 		return tienda;
 	}
 	
+	public void setTienda(Tienda tienda) {
+		
+		esNueva = false;
+		this.tienda = tienda;
+		
+		tfNombre.setText(tienda.getNombre());
+		tfDescripcion.setText(tienda.getDescripcion());
+		tfNumeroLocal.setText(String.valueOf(tienda.getNumeroLocal()));
+		dcFechaApertura.setDate(tienda.getFechaApertura());
+	}
+	
 	private void aceptar() {
 		
-		tienda = new Tienda();
+		if (esNueva)
+			tienda = new Tienda();
+		
 		tienda.setNombre(tfNombre.getText());
 		tienda.setDescripcion(tfDescripcion.getText());
 		if (tfNumeroLocal.getText().equals(""))
