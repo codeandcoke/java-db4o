@@ -14,6 +14,7 @@ import static org.sfaci.holadb4o.util.Constantes.CENTRO_COMERCIAL;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -22,6 +23,7 @@ import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
@@ -34,6 +36,14 @@ import javax.swing.JTable;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JComboBox;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Ejemplo que pruebas las principales características de db4o
@@ -61,6 +71,9 @@ public class HolaDb4o {
 	private JScrollPane scrollPane_1;
 	private JTablaTiendas tablaTiendas;
 	private JTable tablaCentros;
+	private JButton tfBuscar;
+	private JTextField tfFiltro;
+	private JComboBox<String> cbCampos;
 
 	/**
 	 * Launch the application.
@@ -82,6 +95,7 @@ public class HolaDb4o {
 	 * Create the application.
 	 */
 	public HolaDb4o() {
+		
 		initialize();
 		inicializar();
 	}
@@ -143,7 +157,66 @@ public class HolaDb4o {
 	 * TODO Elimina Tiendas o Centros Comercial
 	 */
 	private void eliminar() {
+	
+		switch (tab.getSelectedIndex()) {
+		case TIENDA:
+			int filaSeleccionada = 0;
+			
+			filaSeleccionada = tablaTiendas.getSelectedRow();
+			if (filaSeleccionada == -1)
+				return;
+			
+			String nombre = (String) tablaTiendas.getValueAt(filaSeleccionada, 0);
+			Tienda tienda = new Tienda();
+			tienda.setNombre(nombre);
+			// Se asume que no existen dos tiendas con el mismo nombre.
+			// Así se puede contar con que la consulta sólo devuelve un resultado
+			ObjectSet<Tienda> resultado = Util.db.queryByExample(tienda);
+			tienda = resultado.next();
+			Util.db.delete(tienda);
+			
+			tablaTiendas.listar();
+		case CENTRO_COMERCIAL:
+			// TODO
+		default:
+		}
+	}
+	
+	/**
+	 * TODO Busca en Tiendas o Centros Comerciales
+	 */
+	private void buscar() {
+	
+		int campo = cbCampos.getSelectedIndex();
+		tablaTiendas.listar(tfFiltro.getText(), campo);
+	}
+	
+	/**
+	 * TODO Cambia de pestaña. Hay que recargar el combo de campos
+	 */
+	private void cambiarPestana() {
 		
+		switch (tab.getSelectedIndex()) {
+		case TIENDA:
+			cbCampos.removeAllItems();
+			cbCampos.addItem("<Todos>");
+			cbCampos.addItem(Constantes.NOMBRE);
+			cbCampos.addItem(Constantes.DESCRIPCION);
+			cbCampos.addItem(Constantes.NUMERO_LOCAL);
+			cbCampos.addItem(Constantes.FECHA_APERTURA);
+			break;
+		case CENTRO_COMERCIAL:
+			cbCampos.removeAllItems();
+			// TODO
+			break;
+		default:
+		}
+	}
+	
+	/**
+	 * TODO Selecciona alguna tienda de la tabla
+	 */
+	private void seleccionarTiendas() {
 	}
 
 	/**
@@ -189,12 +262,20 @@ public class HolaDb4o {
 			toolBar.add(getBtAlta());
 			toolBar.add(getBtModificar());
 			toolBar.add(getBtEliminar());
+			toolBar.add(getTfFiltro());
+			toolBar.add(getCbCampos());
+			toolBar.add(getTfBuscar());
 		}
 		return toolBar;
 	}
 	public JTabbedPane getTab() {
 		if (tab == null) {
 			tab = new JTabbedPane(JTabbedPane.TOP);
+			tab.addChangeListener(new ChangeListener() {
+				public void stateChanged(ChangeEvent arg0) {
+					cambiarPestana();
+				}
+			});
 			tab.addTab("Tiendas", null, getPanelTiendas(), null);
 			tab.addTab("Centros Comerciales", null, getPanelCentros(), null);
 		}
@@ -284,6 +365,12 @@ public class HolaDb4o {
 	public JTable getTablaTiendas() {
 		if (tablaTiendas == null) {
 			tablaTiendas = new JTablaTiendas();
+			tablaTiendas.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					seleccionarTiendas();
+				}
+			});
 		}
 		return tablaTiendas;
 	}
@@ -292,5 +379,30 @@ public class HolaDb4o {
 			tablaCentros = new JTable();
 		}
 		return tablaCentros;
+	}
+	public JButton getTfBuscar() {
+		if (tfBuscar == null) {
+			tfBuscar = new JButton("Buscar");
+			tfBuscar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					buscar();
+				}
+			});
+		}
+		return tfBuscar;
+	}
+	public JTextField getTfFiltro() {
+		if (tfFiltro == null) {
+			tfFiltro = new JTextField();
+			tfFiltro.setColumns(10);
+		}
+		return tfFiltro;
+	}
+	public JComboBox<String> getCbCampos() {
+		if (cbCampos == null) {
+			cbCampos = new JComboBox<String>();
+			cbCampos.setPreferredSize(new Dimension(90, 20));
+		}
+		return cbCampos;
 	}
 }

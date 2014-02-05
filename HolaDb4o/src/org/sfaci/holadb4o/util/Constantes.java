@@ -17,4 +17,10 @@ public class Constantes {
 	public static final String DESCRIPCION = "Descripción";
 	public static final String NUMERO_LOCAL = "Núm. Local";
 	public static final String FECHA_APERTURA = "Fecha Apertura";
+	
+	public static final int C_TODOS = 0;
+	public static final int C_NOMBRE = 1;
+	public static final int C_DESCRIPCION = 2;
+	public static final int C_NUMERO_LOCAL = 3;
+	public static final int C_FECHA_APERTURA = 4;
 }

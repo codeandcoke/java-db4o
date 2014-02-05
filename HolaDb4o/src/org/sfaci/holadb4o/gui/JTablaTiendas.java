@@ -1,5 +1,8 @@
 package org.sfaci.holadb4o.gui;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -8,6 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Constantes;
 import org.sfaci.holadb4o.util.Util;
+
+import com.db4o.query.Predicate;
+import com.db4o.query.Query;
 
 /**
  * Tabla que lista datos de Tiendas
@@ -50,7 +56,60 @@ public class JTablaTiendas extends JTable {
 	 */
 	public void listar() {
 		
+		// Lista todos los objetos del tipo que se pasa como parámetro
 		List<Tienda> tiendas = Util.db.query(Tienda.class);
+		cargarFilas(tiendas);
+	}
+	
+	public void listar(final String filtro, int campo) {
+		
+		Tienda tienda = null;
+		List<Tienda> tiendas = null;
+		
+		switch (campo) {
+		case Constantes.C_TODOS:
+			tiendas = Util.db.query(new Predicate<Tienda>() {
+				@Override
+				public boolean match(Tienda tienda) {
+					
+					if (tienda.getNombre().contains(filtro))
+						return true;
+					if (tienda.getDescripcion().contains(filtro))
+						return true;
+					if (String.valueOf(tienda.getNumeroLocal()).contains(filtro))
+						return true;
+					
+					return false;
+				}
+			});
+			break;
+		case Constantes.C_NOMBRE:
+			tienda = new Tienda();
+			tienda.setNombre(filtro);
+			tiendas = Util.db.queryByExample(tienda);
+			break;
+		case Constantes.C_DESCRIPCION:
+			tienda = new Tienda();
+			tienda.setDescripcion(filtro);
+			tiendas = Util.db.queryByExample(tienda);
+			break;
+		case Constantes.C_NUMERO_LOCAL:
+			tienda = new Tienda();
+			tienda.setNumeroLocal(Integer.parseInt(filtro));
+			tiendas = Util.db.queryByExample(tienda);
+			break;
+		case Constantes.C_FECHA_APERTURA:
+			try {
+				tienda = new Tienda();
+				tienda.setFechaApertura(new SimpleDateFormat().parse(filtro));
+				tiendas = Util.db.queryByExample(tienda);
+			} catch (ParseException pe) {
+				pe.printStackTrace();
+			}
+			break;
+		default:
+		}
+		
 		cargarFilas(tiendas);
 	}
 
