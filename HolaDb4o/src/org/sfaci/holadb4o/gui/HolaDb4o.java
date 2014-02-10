@@ -130,6 +130,7 @@ public class HolaDb4o {
 			
 			Tienda tienda = jTienda.getTienda();
 			Util.db.store(tienda);
+			Util.db.commit();
 			
 			tablaTiendas.listar();
 		case CENTRO_COMERCIAL:
@@ -152,6 +153,7 @@ public class HolaDb4o {
 			
 			Tienda tienda = jTienda.getTienda();
 			Util.db.store(tienda);
+			Util.db.commit();
 			
 			tablaTiendas.listar();
 		case CENTRO_COMERCIAL:
@@ -169,6 +171,7 @@ public class HolaDb4o {
 		case TIENDA:
 			Tienda tienda = tablaTiendas.getTiendaSeleccionada();
 			Util.db.delete(tienda);
+			Util.db.commit();
 			
 			tablaTiendas.listar();
 		case CENTRO_COMERCIAL:
