@@ -3,7 +3,7 @@ package org.sfaci.holadb4o.util;
 /**
  * Constantes varias
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class Constantes {
@@ -14,8 +14,8 @@ public class Constantes {
 	public static final int CENTRO_COMERCIAL = 1;
 	
 	public static final String NOMBRE = "Nombre";
-	public static final String DESCRIPCION = "Descripción";
-	public static final String NUMERO_LOCAL = "Núm. Local";
+	public static final String DESCRIPCION = "DescripciÃ³n";
+	public static final String NUMERO_LOCAL = "NÃºm. Local";
 	public static final String FECHA_APERTURA = "Fecha Apertura";
 	
 	public static final int C_TODOS = 0;

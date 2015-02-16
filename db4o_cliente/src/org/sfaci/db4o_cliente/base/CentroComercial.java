@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Clase que representa un Centro Comercial
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class CentroComercial {

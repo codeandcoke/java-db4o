@@ -20,7 +20,7 @@ import com.toedter.calendar.JDateChooser;
 /**
  * Ventana para recogida de datos de Tiendas
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class JTienda extends JDialog {
@@ -154,14 +154,14 @@ public class JTienda extends JDialog {
 	}
 	public JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("Descripci\u00F3n");
+			lblNewLabel_1 = new JLabel("Descripción");
 			lblNewLabel_1.setBounds(10, 75, 72, 14);
 		}
 		return lblNewLabel_1;
 	}
 	public JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
-			lblNewLabel_2 = new JLabel("N\u00FAm. Local");
+			lblNewLabel_2 = new JLabel("Núm. Local");
 			lblNewLabel_2.setBounds(10, 112, 72, 14);
 		}
 		return lblNewLabel_2;

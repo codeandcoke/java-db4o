@@ -17,7 +17,7 @@ import com.db4o.query.Predicate;
 /**
  * Tabla que lista datos de Tiendas
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class JTablaTiendas extends JTable {
@@ -55,7 +55,7 @@ public class JTablaTiendas extends JTable {
 	 */
 	public void listar() {
 		
-		// Lista todos los objetos del tipo que se pasa como par·metro
+		// Lista todos los objetos del tipo que se pasa como par√°metro
 		List<Tienda> tiendas = Util.db.query(Tienda.class);
 		cargarFilas(tiendas);
 	}
@@ -142,7 +142,7 @@ public class JTablaTiendas extends JTable {
 		Tienda tienda = new Tienda();
 		tienda.setNombre(nombre);
 		// Se asume que no existen dos tiendas con el mismo nombre.
-		// AsÌ se puede contar con que la consulta sÛlo devuelve un resultado
+		// As√≠ se puede contar con que la consulta s√≥lo devuelve un resultado
 		ObjectSet<Tienda> resultado = Util.db.queryByExample(tienda);
 		tienda = resultado.next();
 		
@@ -150,7 +150,7 @@ public class JTablaTiendas extends JTable {
 	}
 
 	/**
-	* Elimina todo el contenido del control JTable
+	* Elimina el contenido del control JTable
 	*/
 	public void vaciar() {
 

@@ -36,9 +36,9 @@ import org.sfaci.holadb4o.util.Util.Accion;
 import com.db4o.Db4oEmbedded;
 
 /**
- * Ejemplo que pruebas las principales caracterÌsticas de db4o
+ * Ejemplo que pruebas las principales caracter√≠sticas de db4o
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class HolaDb4o {
@@ -91,7 +91,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * Inicializa la aplicaciÛn
+	 * Inicializa la aplicaci√≥n
 	 */
 	private void inicializar() {
 		
@@ -104,12 +104,12 @@ public class HolaDb4o {
 	 */
 	private void conectar() {
 		
-		// Conecta con la Base de Datos (si el fichero no existe lo crear·)
+		// Conecta con la Base de Datos (si el fichero no existe lo crear√°)
 		Util.db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), Constantes.DATABASE_FILENAME);
 	}
 	
 	/**
-	 * Cierra la aplicaciÛn
+	 * Cierra la aplicaci√≥n
 	 */
 	private void cerrar() {
 		
@@ -118,7 +118,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Da de alta Tiendas o Centros Comerciales
+	 * Da de alta Tiendas o Centros Comerciales
 	 */
 	private void darDeAlta() {
 		
@@ -140,7 +140,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Modifica Tiendas o Centros Comerciales
+	 * Modifica Tiendas o Centros Comerciales
 	 */
 	private void modificar() {
 		
@@ -163,7 +163,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Elimina Tiendas o Centros Comercial
+	 * Elimina Tiendas o Centros Comercial
 	 */
 	private void eliminar() {
 	
@@ -181,7 +181,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Busca en Tiendas o Centros Comerciales
+	 * Busca en Tiendas o Centros Comerciales
 	 */
 	private void buscar() {
 	
@@ -190,7 +190,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Cambia de pestaÒa. Hay que recargar el combo de campos
+	 * Cambia de pesta√±a. Hay que recargar el combo de campos
 	 */
 	private void cambiarPestana() {
 		
@@ -212,7 +212,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Selecciona alguna tienda de la tabla
+	 * Selecciona alguna tienda de la tabla
 	 */
 	private void seleccionarTiendas() {
 	}

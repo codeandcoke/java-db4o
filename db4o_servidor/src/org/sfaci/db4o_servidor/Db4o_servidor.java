@@ -6,10 +6,10 @@ import com.db4o.ObjectServer;
 import com.db4o.cs.Db4oClientServer;
 
 /**
- * Inicia un servidor db4o que puede ser utilizado por múltiples clientes
- * de forma concurrente a través de la red
- * @author Santi
- *
+ * Inicia un servidor db4o que puede ser utilizado por mÃºltiples clientes
+ * de forma concurrente a travÃ©s de la red
+ * @author Santiago Faci
+ * @version curso 2014-2015
  */
 public class Db4o_servidor {
 	

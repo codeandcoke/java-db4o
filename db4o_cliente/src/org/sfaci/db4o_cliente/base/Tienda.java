@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Clase que representa una tienda
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class Tienda {

@@ -17,7 +17,7 @@ import com.db4o.query.Predicate;
 /**
  * Tabla que lista datos de Tiendas
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class JTablaTiendas extends JTable {
@@ -55,7 +55,7 @@ public class JTablaTiendas extends JTable {
 	 */
 	public void listar() {
 		
-		// Lista todos los objetos del tipo que se pasa como parámetro
+		// Lista todos los objetos del tipo que se pasa como parÃ¡metro
 		List<Tienda> tiendas = Util.db.query(Tienda.class);
 		cargarFilas(tiendas);
 	}
@@ -72,7 +72,7 @@ public class JTablaTiendas extends JTable {
 				public boolean match(Tienda tienda) {
 					
 					// Ver la parte '4.2.6 Native Query Performance' en el tutorial
-					// No se puede utilizar 'código arbitrario' con implementanciones cliente-servidor a través de la red
+					// No se puede utilizar 'cÃ³digo arbitrario' con implementanciones cliente-servidor a travÃ©s de la red
 					if (tienda.getNombre().contains(filtro) || tienda.getDescripcion().contains(filtro))
 						return true;
 					
@@ -140,7 +140,7 @@ public class JTablaTiendas extends JTable {
 		Tienda tienda = new Tienda();
 		tienda.setNombre(nombre);
 		// Se asume que no existen dos tiendas con el mismo nombre.
-		// Así se puede contar con que la consulta sólo devuelve un resultado
+		// Asi se puede contar con que la consulta sÃ³lo devuelve un resultado
 		ObjectSet<Tienda> resultado = Util.db.queryByExample(tienda);
 		tienda = resultado.next();
 		
@@ -148,7 +148,7 @@ public class JTablaTiendas extends JTable {
 	}
 
 	/**
-	* Elimina todo el contenido del control JTable
+	* Elimina el contenido del control JTable
 	*/
 	public void vaciar() {
 

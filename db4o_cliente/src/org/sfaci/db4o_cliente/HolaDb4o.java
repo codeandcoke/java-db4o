@@ -37,11 +37,11 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.cs.Db4oClientServer;
 
 /**
- * Ejemplo que pruebas las principales caracterÌsticas de db4o
- * conectando con un servidor a travÈs de la red
+ * Ejemplo que pruebas las principales caracter√≠sticas de db4o
+ * conectando con un servidor a trav√©s de la red
  * 
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class HolaDb4o {
@@ -94,7 +94,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * Inicializa la aplicaciÛn
+	 * Inicializa la aplicaci√≥n
 	 */
 	private void inicializar() {
 		
@@ -108,27 +108,27 @@ public class HolaDb4o {
 	private void conectar() {
 		
 		/*
-		 *  Podemos abrir varias conexiones simult·neas con la Base de datos
+		 *  Podemos abrir varias conexiones simult√°neas con la Base de datos
 		 *  
 		 *  ObjectServer servidor = Db4oClientServer.openServer(Constantes.DATABASE_FILENAME, 0);
 		 *  
 		 *  invocando a servidor.openClient() se obtienen nuevas conexiones con la base de datos
-		 *  Est· soluciÛn est· pensada para aplicaciones servidor que soportan m˙ltiples conexiones de clientes y quieren
+		 *  Esta soluci√≥n est√° pensada para aplicaciones servidor que soportan m√∫ltiples conexiones de clientes y quieren
  	 	 *  atender dichas peticiones de forma concurrente
 		 */
 		
 		/*
-		 *  Conecta con un servidor db4o a travÈs de la red
-		 *  Esta soluciÛn est· pensada para m˙ltiples clientes que se ejecutan en diferentes procesos
+		 *  Conecta con un servidor db4o a trav√©s de la red
+		 *  Esta soluci√≥n est√° pensada para m√∫ltiples clientes que se ejecutan en diferentes procesos
 		 *  y quieren acceder a la base de datos de forma concurrente.
-		 *  En este caso la Base de Datos se ejecuta como una instancia de servidor desde otra aplicaciÛn
-		 *  a la que se llamar· 'servidor de db4o'
+		 *  En este caso la Base de Datos se ejecuta como una instancia de servidor desde otra aplicaci√≥n
+		 *  a la que se llamar√© 'servidor de db4o'
 		 */
 		Util.db = Db4oClientServer.openClient("localhost", 8080, "usuario", "contrasena");
 	}
 	
 	/**
-	 * Cierra la aplicaciÛn
+	 * Cierra la aplicaci√≥n
 	 */
 	private void cerrar() {
 		
@@ -137,7 +137,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Da de alta Tiendas o Centros Comerciales
+	 * Da de alta Tiendas o Centros Comerciales
 	 */
 	private void darDeAlta() {
 		
@@ -159,7 +159,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Modifica Tiendas o Centros Comerciales
+	 * Modifica Tiendas o Centros Comerciales
 	 */
 	private void modificar() {
 		
@@ -182,7 +182,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Elimina Tiendas o Centros Comercial
+	 * Elimina Tiendas o Centros Comercial
 	 */
 	private void eliminar() {
 	
@@ -200,7 +200,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Busca en Tiendas o Centros Comerciales
+	 * Busca en Tiendas o Centros Comerciales
 	 */
 	private void buscar() {
 		
@@ -209,7 +209,7 @@ public class HolaDb4o {
 	}
 	
 	/**
-	 * TODO Cambia de pestaÒa. Hay que recargar el combo de campos
+	 * Cambia de pesta√±a. Hay que recargar el combo de campos
 	 */
 	private void cambiarPestana() {
 		
@@ -241,7 +241,7 @@ public class HolaDb4o {
 	 */
 	private void initialize() {
 		frmHolaDbo = new JFrame();
-		frmHolaDbo.setTitle("Hola db4o");
+		frmHolaDbo.setTitle("Cliente db4o");
 		frmHolaDbo.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {

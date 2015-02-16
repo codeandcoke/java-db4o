@@ -5,7 +5,7 @@ import com.db4o.ObjectContainer;
 /**
  * Clase de utilidad
  * @author Santiago Faci
- * @version 1.0
+ * @version curso 2014-2015
  *
  */
 public class Util {
