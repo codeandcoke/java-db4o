@@ -1,5 +1,6 @@
 package org.sfaci.holadb4o.base;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,9 @@ public class CentroComercial {
 	private Date fechaConstruccion;
 	private List<Tienda> tiendas;
 	
-	public CentroComercial() {}
+	public CentroComercial() {
+		tiendas = new ArrayList<Tienda>();
+	}
 	
 	public CentroComercial(String nombre, String direccion, float extension,
 			Date fechaConstruccion, List<Tienda> tiendas) {
@@ -26,6 +29,7 @@ public class CentroComercial {
 		this.extension = extension;
 		this.fechaConstruccion = fechaConstruccion;
 		this.tiendas = tiendas;
+
 	}
 	public String getNombre() {
 		return nombre;

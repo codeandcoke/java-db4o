@@ -28,6 +28,9 @@ import javax.swing.JToolBar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.ta.TransparentActivationSupport;
+import org.sfaci.holadb4o.base.CentroComercial;
 import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Constantes;
 import org.sfaci.holadb4o.util.Util;
@@ -105,7 +108,10 @@ public class HolaDb4o {
 	private void conectar() {
 		
 		// Conecta con la Base de Datos (si el fichero no existe lo creará)
+		EmbeddedConfiguration configuracion = Db4oEmbedded.newConfiguration();
+		configuracion.common().add(new TransparentActivationSupport());
 		Util.db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), Constantes.DATABASE_FILENAME);
+
 	}
 	
 	/**

@@ -2,11 +2,13 @@ package org.sfaci.holadb4o.gui;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.sfaci.holadb4o.base.CentroComercial;
 import org.sfaci.holadb4o.base.Tienda;
 import org.sfaci.holadb4o.util.Constantes;
 import org.sfaci.holadb4o.util.Util;
